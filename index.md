@@ -1,5 +1,5 @@
 # Mini Tank Robot
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
+The project that I chose for this year's BSE session is the Mini Tank Robot. It is a robot that can move with code that is given to it, but only preset code. And I wanted it to be able to be controlled by myself on the go, so that is what I did. I made the robot bluetooth controllable so I could move it around with a joystick. I had some big problems involving things such as the coding and wiring. In this program I learned to persevere through problems that I encountered on the way. 
 
 You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
 ```HTML 
