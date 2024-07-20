@@ -1,12 +1,6 @@
 # Mini Tank Robot
 The project that I chose for this year's BSE session is the Mini Tank Robot. It is a robot that can move with code that is given to it, but only preset code. And I wanted it to be able to be controlled by myself on the go, so that is what I did. I made the robot bluetooth controllable so I could move it around with a joystick. I had some big problems involving things such as the coding and wiring. In this program I learned to persevere through problems that I encountered on the way. 
 
-You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
-
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
 | Geo C | Thomas Jefferson | Mechanical Engineering/Software Development | Incoming Freshman
@@ -57,16 +51,204 @@ Here's where you'll put images of your schematics. [Tinkercad](https://www.tinke
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
 ```c++
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  Serial.println("Hello World!");
+//code for Uno and mini tank itself
+
+#include <SoftwareSerial.h>
+
+#define tx 2
+#define rx 3
+
+SoftwareSerial configBt(rx, tx);
+
+long tm, t, d;
+
+char c = "";
+
+int in1 = 5;
+int in2 = 6;
+int in3 = 9;
+int in4 = 10;
+
+void setup()
+{
+  //opens serial monitor and Bluetooth serial monitor
+  Serial.begin(38400);
+  configBt.begin(38400);
+  pinMode(tx, OUTPUT);
+  pinMode(rx, INPUT);
+
+  //initializes all motor pins as outputs
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  //checks for Bluetooth data
+  if (configBt.available())
+  {
+    Serial.print((char)configBt.read());
+  }
+  if (Serial.available())
+  {
+    configBt.write(Serial.read());
+  }
+  
+  if (configBt.available())
+  {
+    //if available stores to command character
+    c = (char)configBt.read();
+    //prints to serial
+    Serial.println(c);
+  }
 
+  //acts based on character
+  switch(c){
+    
+    //forward case
+    case 'W':
+      forward();
+      break;
+      
+    //left case
+    case 'A':
+      left();
+      break;
+      
+    //right case
+    case 'D':
+      right();
+      break;
+      
+    //back case
+    case 'S':
+      back();
+      break;
+      
+    //default is to stop robot
+    case 'F':
+      freeze();
+    }
 }
+
+//moves robot forward 
+void forward(){
+  
+    //chages directions of motors
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+
+  }
+
+//moves robot left
+void left(){
+
+    //changes directions of motors
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+
+  }
+
+//moves robot right
+void right(){
+
+    //changes directions of motors
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+
+  }
+
+//moves robot backwards
+void back(){
+
+    //changes directions of motors
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+
+  }
+
+//stops robot
+void freeze(){
+
+    //changes directions of motors
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, LOW);
+
+  }
+```
+```c++
+//code for Micro and the controller
+
+const int SW_pin = 2;
+const int X_pin = 0;
+const int Y_pin = 1;
+
+void setup()
+{
+  Serial.begin(38400);
+  Serial1.begin(38400);
+
+  pinMode(SW_pin, INPUT);
+  digitalWrite(SW_pin, HIGH);
+  Serial.begin(115200);
+}
+
+void loop() 
+{
+  if (Serial1.available())
+  {
+    Serial.print((char)Serial1.read());
+  }
+  if (Serial.available())
+  {
+    Serial1.write(Serial.read());
+  }
+
+  Serial.print("Switch:");
+  Serial.print(digitalRead(SW_pin));
+  Serial.print("\n");
+  Serial.print("X-axis:");
+  Serial.print(analogRead(X_pin));
+  Serial.print("\n");
+  Serial.print("Y=axis");
+  Serial.print(analogRead(Y_pin));
+  Serial.print("\n\n");
+  delay(500);
+
+  if (analogRead(Y_pin)<=200)
+  {
+    Serial1.write('W');
+  }
+  else if (analogRead(Y_pin)>=900)
+  {
+    Serial1.write('S');
+  }
+  else if (analogRead(X_pin)<=200)
+  {
+    Serial1.write('A');
+  }
+  else if (analogRead(X_pin)>=900)
+  {
+    Serial1.write('D');
+  }
+  else
+  {
+    Serial1.write('F');
+  }
+}
+
 ```
 
 # Bill of Materials
