@@ -38,11 +38,7 @@ For your second milestone, explain what you've worked on since your previous mil
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-W42b2CsW_I?si=1gK48XpmlTk4Vci-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
-- An explanation about the different components of your project and how they will all integrate together
-- Technical progress you've made so far
-- Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project
+For my first milestone I assembled the mini tank by putting all of the parts together and connected the wires. They connected all of the engines to the Arduino and h-bridge. This allowed the electricity to flow when the battery was connected making the mini tank work. But for it to actually move I wrote the first bit of code. This code didn't allow me to control the mini tanks' movements, but made it follow a preplanned route. A challenge that I faced in this first segment was that after switching to newer, more powerful batteries I fried an h-bridge, which caused me quite a few problems. My hopes for a future milestone is to make the mini tank remotely controllable. This will require writing new code and figuring out how to use new hardware.
 
 # Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
