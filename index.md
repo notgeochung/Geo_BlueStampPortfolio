@@ -28,11 +28,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RUY2Yc7vZ_I?si=IFGFKxFYSEwN_t-n" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
-- Technical details of what you've accomplished and how they contribute to the final goal
-- What has been surprising about the project so far
-- Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone 
+For my second milestone I added a joystick that connects to my computer with a bluetooth module that connects to another bluetooth module on the mini tank. This allowed any signals from my computer to go to the mini tank via the connected bluetooth modules. In order for them to connect I had to update the code so that the joysticks inputs would convert into movement with the mini tank. The code also had to be doubled, half for the controllers side of things and the other half for the mini tank itself. A challenge that I faced was that using and coding a joystick was quite difficult compared to other ways of controlling a robot for a beginner. In the end I found out with some help from my instructor on how joysticks worked and managed to make them work.
 
 # First Milestone
 
